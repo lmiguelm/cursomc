@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.lmiguel.cursomc.services.exceptions.ObjectNotFoundException;
-import com.lmiguel.cursomc.services.exceptions.DateIntegrityException;
+import com.lmiguel.cursomc.services.exceptions.DataIntegrityException;
 
 
 @ControllerAdvice
@@ -23,8 +23,8 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 	}
 	
-	@ExceptionHandler(DateIntegrityException.class)
-	public ResponseEntity<StandardError> dateIntegrity(DateIntegrityException e, HttpServletRequest request) {
+	@ExceptionHandler(DataIntegrityException.class)
+	public ResponseEntity<StandardError> dateIntegrity(DataIntegrityException e, HttpServletRequest request) {
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
